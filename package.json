@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."  
+    "start": "electron ."
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,20 @@
   },
   "homepage": "https://github.com/electron/electron-quick-start#readme",
   "devDependencies": {
-    "electron": "^4.1.4"
-  }
+    "electron": "^4.1.4",
+    "electron-builder": "^20.39.0"
+  },
+  "dependencies": {
+    "electron-updater": "^4.0.6"
+  },
+  "build": {
+    "appId": "com.github.toninichev.electron-quick-start",
+    "mac": {
+      "category": "toninichev.syncolarity.utilities.productivity",
+      "target": [
+        "zip",
+        "dmg"
+      ]
+    }
+  }  
 }
