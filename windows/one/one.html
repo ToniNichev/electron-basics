@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="UTF-8">
+      <script type='text/javascript'>
+        // In such way we connect ipcRenderer to our page.
+        window.ipcRenderer = require('electron').ipcRenderer;
+        // The ipcRenderer module provides a few methods so you can send events from the render process (web page) to the main process.
+      </script>      
+      <title>One</title>
+    </head>
+    <body>      
+      TEST 123
+      <button id="buttonOne">Test</button>
+    <script src="one.js"></script>
+    </body>
+  </html>
