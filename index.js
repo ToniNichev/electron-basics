@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 let win = null;
-let filePath = 'app-settings.json';
+
   
 app.on('ready', function() {
 
@@ -22,10 +22,16 @@ app.on('ready', function() {
 
 });
 
+function getFilePath() {
+  //let filePath = 'app-settings.json';
+  let filePath = app.getPath('appData');
+  filePath = path.join(filePath, 'app-settings.json');
+  console.log("filePath: ", filePath);
+  return filePath;
+}
 
 function loadSettings() {
-  filepath = path.join(filePath);
-
+  filepath = getFilePath();
   if (fs.existsSync(filepath)) {
     //settings exists
     fs.readFile(filepath, 'utf-8', (err, data) => {
@@ -46,10 +52,8 @@ function loadSettings() {
   }
 }
 
-
-ipcMain.on('send-message-to-renderer', (event, data) => {
-  console.log(">>>> send-message-to-renderer", data);
-  filepath = path.join(filePath);   
+function saveSettings(data) {
+  filepath = getFilePath();
   data = JSON.stringify(data);
   fs.writeFile(filepath, data,  function (err) {
     console.log("SAVED");
@@ -62,6 +66,12 @@ ipcMain.on('send-message-to-renderer', (event, data) => {
     }    
   });  
 
+}
+
+
+ipcMain.on('send-message-to-renderer', (event, data) => {
+  console.log(">>>> send-message-to-renderer", data);
+  saveSettings(data);
   //win.webContents.send('send-message-to-window', {"message": "message from renderer!"});
 });
 
