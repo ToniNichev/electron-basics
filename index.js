@@ -24,7 +24,7 @@ app.on('ready', function() {
 
 function getFilePath() {
   //let filePath = 'app-settings.json';
-  let filePath = app.getPath('appData');
+  let filePath = app.getPath('userData');
   filePath = path.join(filePath, 'app-settings.json');
   console.log("filePath: ", filePath);
   return filePath;
